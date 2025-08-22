@@ -67,7 +67,7 @@
     "jest": "29.7.0",
     "jest-environment-jsdom": "29.7.0",
     "jsonc-eslint-parser": "^2.4.0",
-    "knip": "^5.55.1",
+    "knip": "^5.63.0",
     "nano-staged": "^0.8.0",
     "nx": "20.8.1",
     "pkg-pr-new": "^0.0.54",
