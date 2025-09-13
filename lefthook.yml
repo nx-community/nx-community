@@ -1,0 +1,34 @@
+pre-commit:
+  parallel: true
+  commands:
+    format:
+      run: pnpm nx format:write --files {staged_files}
+      stage_fixed: true
+
+pre-push:
+  commands:
+    git-lfs:
+      run: |
+        command -v git-lfs >/dev/null 2>&1 || { echo >&2 "\nThis repository is configured for Git LFS but 'git-lfs' was not found on your path. If you no longer wish to use Git LFS, remove this hook by deleting the 'pre-push' file in the hooks directory (set by 'core.hookspath'; usually '.git/hooks').\n"; exit 2; }
+        git lfs pre-push "$@"
+
+post-merge:
+  commands:
+    git-lfs:
+      run: |
+        command -v git-lfs >/dev/null 2>&1 || { echo >&2 "\nThis repository is configured for Git LFS but 'git-lfs' was not found on your path. If you no longer wish to use Git LFS, remove this hook by deleting the 'post-merge' file in the hooks directory (set by 'core.hookspath'; usually '.git/hooks').\n"; exit 2; }
+        git lfs post-merge "$@"
+
+post-commit:
+  commands:
+    git-lfs:
+      run: |
+        command -v git-lfs >/dev/null 2>&1 || { echo >&2 "\nThis repository is configured for Git LFS but 'git-lfs' was not found on your path. If you no longer wish to use Git LFS, remove this hook by deleting the 'post-commit' file in the hooks directory (set by 'core.hookspath'; usually '.git/hooks').\n"; exit 2; }
+        git lfs post-commit "$@"
+
+post-checkout:
+  commands:
+    git-lfs:
+      run: |
+        command -v git-lfs >/dev/null 2>&1 || { echo >&2 "\nThis repository is configured for Git LFS but 'git-lfs' was not found on your path. If you no longer wish to use Git LFS, remove this hook by deleting the 'post-checkout' file in the hooks directory (set by 'core.hookspath'; usually '.git/hooks').\n"; exit 2; }
+        git lfs post-checkout "$@"
