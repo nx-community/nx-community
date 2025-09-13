@@ -3,14 +3,27 @@
   "extends": [
     "config:best-practices",
     ":preserveSemverRanges",
-    "replacements:all"
+    "replacements:all",
+    ":enableVulnerabilityAlertsWithLabel(\"security\")"
   ],
-  "labels": ["dependencies"],
+  "labels": ["🤖 bot", "dependencies"],
   "minimumReleaseAge": "7 days",
   "patch": { "enabled": false },
   "postUpdateOptions": ["pnpmDedupe"],
   "prConcurrentLimit": 3,
-  "vulnerabilityAlerts": {
-    "labels": ["security"]
-  }
+  "packageRules": [
+    {
+      "description": "Security vulnerability updates",
+      "matchCategories": ["security"],
+      "labels": ["security"],
+      "prPriority": 10,
+      "minimumReleaseAge": null,
+      "patch": { "enabled": true }
+    },
+    {
+      "description": "Regular dependency updates",
+      "excludeCategories": ["security"],
+      "prConcurrentLimit": 3
+    }
+  ]
 }
