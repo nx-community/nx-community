@@ -19,11 +19,6 @@
       "prPriority": 10,
       "minimumReleaseAge": null,
       "patch": { "enabled": true }
-    },
-    {
-      "description": "Regular dependency updates",
-      "excludeCategories": ["security"],
-      "prConcurrentLimit": 3
     }
   ]
 }
