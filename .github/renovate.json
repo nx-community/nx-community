@@ -1,5 +1,16 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["security:only-security-updates", ":semanticCommitType(chore)"],
-  "prConcurrentLimit": 3
+  "extends": [
+    ":preserveSemverRanges",
+    "config:best-practices",
+    "replacements:all"
+  ],
+  "labels": ["dependencies"],
+  "minimumReleaseAge": "7 days",
+  "patch": { "enabled": false },
+  "postUpdateOptions": ["pnpmDedupe"],
+  "prConcurrentLimit": 3,
+  "vulnerabilityAlerts": {
+    "labels": ["security"]
+  }
 }
