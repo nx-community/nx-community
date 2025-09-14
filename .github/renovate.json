@@ -21,7 +21,9 @@
       "prConcurrentLimit": null,
       "minimumReleaseAge": null,
       "patch": { "enabled": true },
-      "schedule": null
+      "schedule": null,
+      "dependencyDashboardApproval": false,
+      "prCreation": "immediate"
     }
   ]
 }
