@@ -15,10 +15,13 @@
     {
       "description": "Security vulnerability updates",
       "matchCategories": ["security"],
+      "matchUpdateTypes": ["patch", "minor", "major"],
       "labels": ["security"],
       "prPriority": 10,
+      "prConcurrentLimit": null,
       "minimumReleaseAge": null,
-      "patch": { "enabled": true }
+      "patch": { "enabled": true },
+      "schedule": null
     }
   ]
 }
