@@ -10,8 +10,13 @@
   "minimumReleaseAge": "7 days",
   "patch": { "enabled": false },
   "postUpdateOptions": ["pnpmDedupe"],
-  "prConcurrentLimit": 3,
+  "prConcurrentLimit": 10,
   "packageRules": [
+    {
+      "description": "Non-security updates",
+      "matchCategories": ["!security"],
+      "prConcurrentLimit": 3
+    },
     {
       "description": "Security vulnerability updates",
       "matchCategories": ["security"],
