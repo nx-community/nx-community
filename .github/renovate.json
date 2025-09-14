@@ -4,31 +4,18 @@
     "config:best-practices",
     ":preserveSemverRanges",
     "replacements:all",
-    ":enableVulnerabilityAlertsWithLabel(\"security\")"
+    "security:openssf-scorecard"
   ],
   "labels": ["🤖 bot", "dependencies"],
   "minimumReleaseAge": "7 days",
   "patch": { "enabled": false },
   "postUpdateOptions": ["pnpmDedupe"],
-  "prConcurrentLimit": 10,
-  "packageRules": [
-    {
-      "description": "Non-security updates",
-      "matchCategories": ["!security"],
-      "prConcurrentLimit": 3
-    },
-    {
-      "description": "Security vulnerability updates",
-      "matchCategories": ["security"],
-      "matchUpdateTypes": ["patch", "minor", "major"],
-      "labels": ["security"],
-      "prPriority": 10,
-      "prConcurrentLimit": null,
-      "minimumReleaseAge": null,
-      "patch": { "enabled": true },
-      "schedule": null,
-      "dependencyDashboardApproval": false,
-      "prCreation": "immediate"
-    }
-  ]
+  "prConcurrentLimit": 3,
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "labels": ["security"],
+    "prCreation": "immediate",
+    "minimumReleaseAge": null,
+    "dependencyDashboardApproval": false
+  }
 }
