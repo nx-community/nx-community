@@ -18,7 +18,10 @@
       "labels": ["security"],
       "prPriority": 10,
       "minimumReleaseAge": null,
-      "patch": { "enabled": true }
+      "patch": { "enabled": true },
+      "schedule": null,
+      "dependencyDashboardApproval": false,
+      "prCreation": "immediate"
     }
   ]
 }
