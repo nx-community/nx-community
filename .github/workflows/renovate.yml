@@ -5,6 +5,9 @@ on:
 jobs:
   renovate:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
       - name: 🪙 Get token
         id: get_token
