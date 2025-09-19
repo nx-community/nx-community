@@ -13,7 +13,7 @@
     "spellcheck": {
       "cache": true
     },
-    "typescript-check": {
+    "typecheck": {
       "cache": true
     },
     "@nx/eslint:lint": {
@@ -48,6 +48,16 @@
       "{workspaceRoot}/.github/workflows/ci.yml"
     ]
   },
+  "plugins": [
+    {
+      "plugin": "@nx/js/typescript",
+      "options": {
+        "typecheck": {
+          "targetName": "typecheck"
+        }
+      }
+    }
+  ],
   "generators": {
     "@nx/web:application": {
       "style": "css",
