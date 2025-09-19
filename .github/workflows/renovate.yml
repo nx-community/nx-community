@@ -1,0 +1,25 @@
+name: 🏚 Renovate
+on:
+  schedule:
+    - cron: "0/15 * * * *" # every 15 minutes
+jobs:
+  renovate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🪙 Get token
+        id: get_token
+        uses: actions/create-github-app-token@v1
+        with:
+          private-key: ${{ secrets.renovate_private_key }}
+          app-id: ${{ secrets.renovate_app_id }}
+          owner: ${{ github.repository_owner }}
+          repositories: "nx-community"
+
+      - name: ✅ Checkout
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
+
+      - name: 🏚 Self-hosted Renovate
+        uses: renovatebot/github-action@v43.0.12
+        with:
+          configurationFile: .github/renovate.json
+          token: "${{ steps.get_token.outputs.token }}"
