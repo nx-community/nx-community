@@ -1,0 +1,21 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:best-practices",
+    ":preserveSemverRanges",
+    "replacements:all",
+    "security:openssf-scorecard"
+  ],
+  "labels": ["🤖 bot", "dependencies"],
+  "minimumReleaseAge": "7 days",
+  "patch": { "enabled": false },
+  "postUpdateOptions": ["pnpmDedupe"],
+  "prConcurrentLimit": 3,
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "labels": ["security"],
+    "prCreation": "immediate",
+    "minimumReleaseAge": null,
+    "dependencyDashboardApproval": false
+  }
+}
