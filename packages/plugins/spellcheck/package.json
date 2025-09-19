@@ -1,5 +1,5 @@
 {
-  "name": "@right-click-code/nx-spellcheck",
+  "name": "@nx-community/nx-spellcheck",
   "version": "0.0.1",
   "type": "commonjs",
   "executors": "./executors.json",

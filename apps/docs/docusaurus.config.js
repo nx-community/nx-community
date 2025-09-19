@@ -7,7 +7,7 @@ const darkCodeTheme = themes.dracula;
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "RightClickCode",
+  title: "nx-community",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
@@ -18,8 +18,8 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: "RightClickCode", // Usually your GitHub org/user name.
-  projectName: "RightClickCode", // Usually your repo name.
+  organizationName: "nx-community", // Usually your GitHub org/user name.
+  projectName: "nx-community", // Usually your repo name.
 
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -41,13 +41,13 @@ const config = {
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: "https://github.com/RightClickCode/RightClickCode/",
+          editUrl: "https://github.com/nx-community/nx-community/",
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: "https://github.com/RightClickCode/RightClickCode/",
+          editUrl: "https://github.com/nx-community/nx-community/",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
@@ -62,7 +62,7 @@ const config = {
       // Replace with your project's social card
       image: "img/docusaurus-social-card.jpg",
       navbar: {
-        title: "RightClickCode",
+        title: "nx-community",
         logo: {
           alt: "RightCLickCode Logo",
           src: "img/logo.svg",
@@ -76,7 +76,7 @@ const config = {
           },
           { to: "/blog", label: "Blog", position: "left" },
           {
-            href: "https://github.com/RightClickCode/RightClickCode/",
+            href: "https://github.com/nx-community/nx-community/",
             label: "GitHub",
             position: "right",
           },
@@ -99,7 +99,7 @@ const config = {
             items: [
               {
                 label: "Github Discussions",
-                href: "https://github.com/RightClickCode/RightClickCode/discussions",
+                href: "https://github.com/nx-community/nx-community/discussions",
               },
             ],
           },
@@ -112,12 +112,12 @@ const config = {
               },
               {
                 label: "GitHub",
-                href: "https://github.com/RightClickCode/RightClickCode/",
+                href: "https://github.com/nx-community/nx-community/",
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} RightClickCode. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} nx-community. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,
