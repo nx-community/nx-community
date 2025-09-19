@@ -12,8 +12,6 @@ jobs:
         with:
           private-key: ${{ secrets.renovate_private_key }}
           app-id: ${{ vars.renovate_app_id }}
-          owner: ${{ github.repository_owner }}
-          repositories: "nx-community"
 
       - name: ✅ Checkout
         uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
