@@ -45,7 +45,7 @@ describe("configure-spellcheck generator", () => {
 
     expect(project.targets.spellcheck).toBeDefined();
     expect(project.targets.spellcheck.executor).toBe(
-      "@right-click-code/nx-spellcheck:spellcheck"
+      "@nx-community/nx-spellcheck:spellcheck"
     );
     expect(project.targets.spellcheck.options).toEqual({});
   });

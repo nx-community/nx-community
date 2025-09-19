@@ -1,2 +1,2 @@
-# RightClickCode Dictionary Words
+# nx-community Dictionary Words
 devcontainers

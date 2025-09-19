@@ -3,8 +3,8 @@
   "version": "0.2",
   "dictionaryDefinitions": [
     {
-      "name": "right-click-code",
-      "path": ".cspell/right-click-code-dictionary.txt",
+      "name": "nx-community",
+      "path": ".cspell/nx-community-dictionary.txt",
       "addWords": true
     },
     {
@@ -28,7 +28,7 @@
     }
   ],
   "dictionaries": [
-    "right-click-code",
+    "nx-community",
     "nx",
     "npm-package-names",
     "vscode-plugin-names",

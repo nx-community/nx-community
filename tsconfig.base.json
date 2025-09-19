@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@right-click-code/nx-spellcheck": [
+      "@nx-community/nx-spellcheck": [
         "packages/plugins/spellcheck/src/index.ts"
       ]
     }
