@@ -4,6 +4,8 @@ on:
     - cron: "0/15 * * * *" # every 15 minutes
 jobs:
   renovate:
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     steps:
       - name: 🪙 Get token
