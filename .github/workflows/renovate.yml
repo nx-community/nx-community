@@ -11,7 +11,7 @@ jobs:
         uses: actions/create-github-app-token@v1
         with:
           private-key: ${{ secrets.renovate_private_key }}
-          app-id: ${{ secrets.renovate_app_id }}
+          app-id: ${{ vars.renovate_app_id }}
           owner: ${{ github.repository_owner }}
           repositories: "nx-community"
 
