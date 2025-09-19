@@ -1,5 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "repositories": ["nx-community/nx-community"],
   "extends": [
     "config:best-practices",
     ":preserveSemverRanges",
