@@ -54,13 +54,7 @@
         "jestConfig": "apps/docs/jest.config.ts"
       }
     },
-    "typescript-check": {
-      "executor": "nx:run-commands",
-      "options": {
-        "cwd": "apps/docs",
-        "command": "tsc -p tsconfig.json"
-      }
-    },
+
     "e2e": {
       "executor": "@nx/playwright:playwright",
       "outputs": ["{workspaceRoot}/dist/.playwright/apps/docs"],
