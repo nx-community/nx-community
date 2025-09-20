@@ -1,0 +1,9 @@
+{
+  "name": "@nx-community/plugins-spellcheck-e2e",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "@nx-community/nx-spellcheck": "workspace:*"
+  }
+}
