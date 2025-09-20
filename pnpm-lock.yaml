@@ -197,6 +197,8 @@ importers:
         specifier: ^8.38.0
         version: 8.38.0(eslint@9.26.0(jiti@2.5.1))(typescript@5.9.2)
 
+  apps/docs: {}
+
 packages:
 
   '@aashutoshrathi/word-wrap@1.2.6':
