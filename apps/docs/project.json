@@ -54,25 +54,12 @@
         "jestConfig": "apps/docs/jest.config.ts"
       }
     },
-    "typescript-check": {
-      "executor": "nx:run-commands",
-      "options": {
-        "cwd": "apps/docs",
-        "command": "tsc -p tsconfig.json"
-      }
-    },
+
     "e2e": {
       "executor": "@nx/playwright:playwright",
       "outputs": ["{workspaceRoot}/dist/.playwright/apps/docs"],
       "options": {
         "config": "apps/docs/playwright.config.ts"
-      }
-    },
-    "upload-screenshots": {
-      "dependsOn": ["e2e"],
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "pnpm argos upload ./screenshots/"
       }
     }
   }

@@ -1,0 +1,6 @@
+pre-commit:
+  parallel: true
+  commands:
+    format:
+      run: pnpm nx format:write --files {staged_files}
+      stage_fixed: true

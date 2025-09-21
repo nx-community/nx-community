@@ -13,7 +13,7 @@
     "spellcheck": {
       "cache": true
     },
-    "typescript-check": {
+    "typecheck": {
       "cache": true
     },
     "@nx/eslint:lint": {
@@ -48,6 +48,16 @@
       "{workspaceRoot}/.github/workflows/ci.yml"
     ]
   },
+  "plugins": [
+    {
+      "plugin": "@nx/js/typescript",
+      "options": {
+        "typecheck": {
+          "targetName": "typecheck"
+        }
+      }
+    }
+  ],
   "generators": {
     "@nx/web:application": {
       "style": "css",
@@ -66,6 +76,6 @@
       }
     }
   },
-  "nxCloudAccessToken": "YzRjOWE1NTUtMDc3ZC00NTIyLWFiNDQtODM2ZWM0NzM4OTA0fHJlYWQ=",
+  "_nxCloudAccessToken": "YzRjOWE1NTUtMDc3ZC00NTIyLWFiNDQtODM2ZWM0NzM4OTA0fHJlYWQ=",
   "useLegacyCache": true
 }

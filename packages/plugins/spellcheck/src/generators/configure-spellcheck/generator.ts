@@ -85,7 +85,7 @@ export async function configureSpellcheckGenerator(
       targets: {
         ...project.targets,
         spellcheck: {
-          executor: "@right-click-code/nx-spellcheck:spellcheck",
+          executor: "@nx-community/nx-spellcheck:spellcheck",
           options: {},
         },
       },
