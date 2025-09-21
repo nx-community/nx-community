@@ -1,5 +1,5 @@
 # Only install packages released at least 7 days ago
-minimumReleaseAge: 10080\
+minimumReleaseAge: 10080
 strictPeerDependencies: true
 
 packages:
