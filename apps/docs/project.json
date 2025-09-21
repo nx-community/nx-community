@@ -61,13 +61,6 @@
       "options": {
         "config": "apps/docs/playwright.config.ts"
       }
-    },
-    "upload-screenshots": {
-      "dependsOn": ["e2e"],
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "pnpm argos upload ./screenshots/"
-      }
     }
   }
 }
