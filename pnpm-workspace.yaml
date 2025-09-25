@@ -5,3 +5,7 @@ strictPeerDependencies: true
 packages:
   - "apps/*"
   - "packages/*"
+
+peerDependencyRules:
+  allowedVersions:
+    "typescript": "5.9.2"
