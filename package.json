@@ -62,7 +62,7 @@
     "eslint-plugin-react-hooks": "5.2.0",
     "jest": "30.1.3",
     "jest-environment-jsdom": "30.1.2",
-    "jsonc-eslint-parser": "^2.4.0",
+    "jsonc-eslint-parser": "^2.4.1",
     "knip": "^5.63.1",
     "lefthook": "^1.8.2",
     "nx": "20.8.1",
