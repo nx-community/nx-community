@@ -80,8 +80,7 @@
   "pnpm": {
     "overrides": {
       "esbuild": ">=0.25.4",
-      "koa": ">=2.16.2 <3.0.0",
-      "webpack-dev-server": "5.2.1"
+      "koa": ">=2.16.2 <3.0.0"
     }
   }
 }
