@@ -4,6 +4,8 @@ import { fileURLToPath } from "url";
 import js from "@eslint/js";
 import nxEslintPlugin from "@nx/eslint-plugin";
 import * as mdx from "eslint-plugin-mdx";
+import preferJsr from "@prefer-jsr/eslint-plugin-prefer-jsr";
+import json from "@eslint/json";
 
 const compat = new FlatCompat({
   baseDirectory: dirname(fileURLToPath(import.meta.url)),
@@ -73,6 +75,17 @@ export default [
     rules: {},
     languageOptions: {
       parser: await import("jsonc-eslint-parser"),
+    },
+  },
+  {
+    files: ["package.json"],
+    language: "json/json",
+    plugins: {
+      "@prefer-jsr": preferJsr,
+      json,
+    },
+    rules: {
+      "@prefer-jsr/prefer-jsr": "error",
     },
   },
   {
