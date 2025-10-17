@@ -31,6 +31,7 @@
     "@docusaurus/tsconfig": "3.8.1",
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "~9.36.0",
+    "@eslint/json": "jsr:^0.13.2",
     "@nx/devkit": "20.8.1",
     "@nx/eslint": "20.8.1",
     "@nx/eslint-plugin": "20.8.1",
@@ -42,6 +43,7 @@
     "@nx/web": "20.8.1",
     "@nx/workspace": "20.8.1",
     "@playwright/test": "^1.52.0",
+    "@prefer-jsr/eslint-plugin-prefer-jsr": "jsr:^0.3.1",
     "@swc-node/register": "1.11.1",
     "@swc/cli": "0.7.8",
     "@swc/core": "1.13.5",
@@ -82,6 +84,16 @@
       "esbuild": ">=0.25.4",
       "koa": ">=2.16.2 <3.0.0",
       "webpack-dev-server": "5.2.1"
+    }
+  },
+  "nx": {
+    "targets": {
+      "lint": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "eslint package.json"
+        }
+      }
     }
   }
 }

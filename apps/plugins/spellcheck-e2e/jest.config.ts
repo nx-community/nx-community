@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
   displayName: "plugins-spellcheck-e2e",
   preset: "../../../jest.preset.js",
