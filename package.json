@@ -93,6 +93,12 @@
         "options": {
           "command": "eslint package.json"
         }
+      },
+      "test": {
+        "executor": "nx:noop"
+      },
+      "build": {
+        "executor": "nx:noop"
       }
     }
   }
