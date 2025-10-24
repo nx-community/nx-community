@@ -52,6 +52,9 @@ importers:
       '@eslint/js':
         specifier: ~9.36.0
         version: 9.36.0
+      '@eslint/json':
+        specifier: jsr:^0.13.2
+        version: '@jsr/eslint__json@0.13.2'
       '@nx/devkit':
         specifier: 20.8.1
         version: 20.8.1(nx@20.8.1(@swc-node/register@1.11.1(@swc/core@1.13.5(@swc/helpers@0.5.17))(@swc/types@0.1.25)(typescript@5.9.2))(@swc/core@1.13.5(@swc/helpers@0.5.17)))
@@ -85,6 +88,9 @@ importers:
       '@playwright/test':
         specifier: ^1.52.0
         version: 1.52.0
+      '@prefer-jsr/eslint-plugin-prefer-jsr':
+        specifier: jsr:^0.3.1
+        version: '@jsr/prefer-jsr__eslint-plugin-prefer-jsr@0.3.1'
       '@swc-node/register':
         specifier: 1.11.1
         version: 1.11.1(@swc/core@1.13.5(@swc/helpers@0.5.17))(@swc/types@0.1.25)(typescript@5.9.2)
@@ -1846,6 +1852,10 @@ packages:
     resolution: {integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==}
     engines: {node: '>=12.22'}
 
+  '@humanwhocodes/momoa@3.3.9':
+    resolution: {integrity: sha512-LHw6Op4bJb3/3KZgOgwflJx5zY9XOy0NU1NuyUFKGdTwHYmP+PbnQGCYQJ8NVNlulLfQish34b0VuUlLYP3AXA==}
+    engines: {node: '>=18'}
+
   '@humanwhocodes/retry@0.4.3':
     resolution: {integrity: sha512-bV0Tgo9K4hfPCek+aMAn81RppFKv2ySDQeMoSZuvTASywNTnVJCArCZE2FWqpvIatKu7VMRLWlR1EazvVhDyhQ==}
     engines: {node: '>=18.18'}
@@ -2072,6 +2082,15 @@ packages:
     engines: {node: '>=10.0'}
     peerDependencies:
       tslib: '2'
+
+  '@jsr/eslint__json@0.13.2':
+    resolution: {integrity: sha512-STMFM/yASGqRx9uhnwv4uppfvMidyR4nCZCdRjLBys/uLl3AwJ03BXr5rl2UbN9hDSNusL3RKBfNp6TBHEAALw==, tarball: https://npm.jsr.io/~/11/@jsr/eslint__json/0.13.2.tgz}
+
+  '@jsr/prefer-jsr__eslint-plugin-prefer-jsr@0.3.1':
+    resolution: {integrity: sha512-TDYGsgyR4iJBLoGkzwHHdsSFeE7dImq6UCWUr7kK+LS8ZjiDQwObAUqBFhylxz0eZyigS3GemUOJfBXYlozaEg==, tarball: https://npm.jsr.io/~/11/@jsr/prefer-jsr__eslint-plugin-prefer-jsr/0.3.1.tgz}
+
+  '@jsr/prefer-jsr__npm2jsr@0.4.0':
+    resolution: {integrity: sha512-mue31FM8734pUEH4JCHb1d7Wzg/1V4xc630FyQpgfJoWJE+nzbHG5XTejb2uH8eDACIcg3w/YICxb8xWj7Xwsg==, tarball: https://npm.jsr.io/~/11/@jsr/prefer-jsr__npm2jsr/0.4.0.tgz}
 
   '@leichtgewicht/ip-codec@2.0.5':
     resolution: {integrity: sha512-Vo+PSpZG2/fmgmiNzYK9qWRh8h/CHrwD0mo1h1DzL4yzHNSfWYujGTYsWGreD000gcgmZ7K4Ys6Tx9TxtsKdDw==}
@@ -11958,6 +11977,8 @@ snapshots:
 
   '@humanwhocodes/module-importer@1.0.1': {}
 
+  '@humanwhocodes/momoa@3.3.9': {}
+
   '@humanwhocodes/retry@0.4.3': {}
 
   '@isaacs/cliui@8.0.2':
@@ -12367,6 +12388,21 @@ snapshots:
       '@jsonjoy.com/buffers': 1.0.0(tslib@2.8.1)
       '@jsonjoy.com/codegen': 1.0.0(tslib@2.8.1)
       tslib: 2.8.1
+
+  '@jsr/eslint__json@0.13.2':
+    dependencies:
+      '@eslint/core': 0.15.2
+      '@eslint/plugin-kit': 0.3.5
+      '@humanwhocodes/momoa': 3.3.9
+      natural-compare: 1.4.0
+
+  '@jsr/prefer-jsr__eslint-plugin-prefer-jsr@0.3.1':
+    dependencies:
+      '@humanwhocodes/momoa': 3.3.9
+      '@jsr/prefer-jsr__npm2jsr': 0.4.0
+      jsonc-eslint-parser: 2.4.1
+
+  '@jsr/prefer-jsr__npm2jsr@0.4.0': {}
 
   '@leichtgewicht/ip-codec@2.0.5': {}
 
