@@ -65,7 +65,7 @@
     "jest": "30.1.3",
     "jest-environment-jsdom": "30.1.2",
     "jsonc-eslint-parser": "^2.4.1",
-    "knip": "^5.63.1",
+    "knip": "^5.66.3",
     "lefthook": "^1.13.6",
     "nx": "20.8.1",
     "pkg-pr-new": "^0.0.60",
