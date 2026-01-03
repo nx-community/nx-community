@@ -98,7 +98,9 @@ export default [
       dependabot,
       yaml,
     },
-    ...dependabot.configs.recommended,
+    rules: {
+      ...dependabot.configs.recommended.rules,
+    },
   },
   {
     ignores: ["**/.docusaurus/"],
