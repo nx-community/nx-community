@@ -8,7 +8,8 @@
     "javascriptreact",
     "typescript",
     "typescriptreact",
-    "json"
+    "json",
+    "yaml"
   ],
   "nxConsole.generateAiAgentRules": true
 }
