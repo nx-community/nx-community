@@ -17,7 +17,7 @@ jobs:
           app-id: ${{ vars.renovate_app_id }}
 
       - name: ✅ Checkout
-        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
 
       - name: 🏚 Self-hosted Renovate
         uses: renovatebot/github-action@f7fad228a053c69a98e24f8e4f6cf40db8f61e08 # v44.2.1
