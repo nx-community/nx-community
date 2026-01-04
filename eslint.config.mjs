@@ -6,13 +6,16 @@ import nxEslintPlugin from "@nx/eslint-plugin";
 import * as mdx from "eslint-plugin-mdx";
 import preferJsr from "@prefer-jsr/eslint-plugin-prefer-jsr";
 import json from "@eslint/json";
+import dependabot from "eslint-plugin-dependabot";
+import { yaml } from "eslint-yaml";
+import { defineConfig } from "eslint/config";
 
 const compat = new FlatCompat({
   baseDirectory: dirname(fileURLToPath(import.meta.url)),
   recommendedConfig: js.configs.recommended,
 });
 
-export default [
+export default defineConfig([
   {
     ignores: ["**/dist"],
   },
@@ -89,6 +92,16 @@ export default [
     },
   },
   {
+    extends: [dependabot.configs.recommended],
+    files: ["**/.github/dependabot.{yml,yaml}"],
+    language: "yaml/yaml",
+    name: "dependabot config",
+    plugins: {
+      dependabot,
+      yaml,
+    },
+  },
+  {
     ignores: ["**/.docusaurus/"],
   },
-];
+]);
