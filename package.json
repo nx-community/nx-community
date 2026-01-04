@@ -92,7 +92,7 @@
       "lint": {
         "executor": "nx:run-commands",
         "options": {
-          "command": "eslint package.json"
+          "command": "eslint package.json .github/dependabot.yml"
         }
       },
       "test": {
