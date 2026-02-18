@@ -70,7 +70,7 @@
     "knip": "^5.78.0",
     "lefthook": "^1.13.6",
     "nx": "20.8.1",
-    "pkg-pr-new": "^0.0.60",
+    "pkg-pr-new": "^0.0.62",
     "prettier": "^3.7.4",
     "remark-frontmatter": "^5.0.0",
     "remark-preset-lint-consistent": "^6.0.1",
