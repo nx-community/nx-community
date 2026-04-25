@@ -1,0 +1,13 @@
+{
+  "name": "@nx-community/graph-to-mermaid",
+  "version": "0.0.1",
+  "type": "commonjs",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "bin": {
+    "graph-to-mermaid": "./src/bin/index.js"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  }
+}

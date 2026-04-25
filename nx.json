@@ -32,6 +32,15 @@
           "codeCoverage": true
         }
       }
+    },
+    "@nx/js:tsc": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
+    },
+    "@nx/vite:test": {
+      "cache": true,
+      "inputs": ["default", "^production"]
     }
   },
   "namedInputs": {
@@ -41,7 +50,8 @@
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
       "!{projectRoot}/tsconfig.spec.json",
       "!{projectRoot}/jest.config.[jt]s",
-      "!{projectRoot}/eslint.config.mjs"
+      "!{projectRoot}/eslint.config.mjs",
+      "!{projectRoot}/src/test-setup.[jt]s"
     ],
     "sharedGlobals": [
       "{workspaceRoot}/babel.config.json",
@@ -54,6 +64,20 @@
       "options": {
         "typecheck": {
           "targetName": "typecheck"
+        }
+      },
+      "exclude": ["packages/tools/graph-to-mermaid/*"]
+    },
+    {
+      "plugin": "@nx/js/typescript",
+      "include": ["packages/tools/graph-to-mermaid/*"],
+      "options": {
+        "typecheck": {
+          "targetName": "typecheck"
+        },
+        "build": {
+          "targetName": "build",
+          "configName": "tsconfig.lib.json"
         }
       }
     }
@@ -77,5 +101,10 @@
     }
   },
   "_nxCloudAccessToken": "YzRjOWE1NTUtMDc3ZC00NTIyLWFiNDQtODM2ZWM0NzM4OTA0fHJlYWQ=",
-  "useLegacyCache": true
+  "useLegacyCache": true,
+  "release": {
+    "version": {
+      "preVersionCommand": "pnpm dlx nx run-many -t build"
+    }
+  }
 }

@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@nx-community/graph-to-mermaid": [
+        "packages/tools/graph-to-mermaid/src/index.ts"
+      ],
       "@nx-community/nx-spellcheck": [
         "packages/plugins/spellcheck/src/index.ts"
       ]
