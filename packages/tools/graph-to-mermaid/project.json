@@ -1,5 +1,5 @@
 {
-  "name": "graph-to-mermaid",
+  "name": "nx-graph-to-mermaid",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/tools/graph-to-mermaid/src",
   "projectType": "library",
@@ -27,16 +27,6 @@
     "nx-release-publish": {
       "options": {
         "packageRoot": "dist/{projectRoot}"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    },
-    "test": {
-      "executor": "@nx/vite:test",
-      "outputs": ["{options.reportsDirectory}"],
-      "options": {
-        "reportsDirectory": "../../../coverage/packages/tools/graph-to-mermaid"
       }
     }
   }

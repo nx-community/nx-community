@@ -60,6 +60,20 @@
   },
   "plugins": [
     {
+      "plugin": "@nx/eslint/plugin",
+      "include": ["packages/tools/graph-to-mermaid/*"],
+      "options": {
+        "targetName": "lint"
+      }
+    },
+    {
+      "plugin": "@nx/vite/plugin",
+      "include": ["packages/tools/graph-to-mermaid/*"],
+      "options": {
+        "testTargetName": "test"
+      }
+    },
+    {
       "plugin": "@nx/js/typescript",
       "options": {
         "typecheck": {
