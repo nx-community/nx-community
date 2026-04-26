@@ -52,6 +52,9 @@ importers:
       '@eslint/js':
         specifier: ~9.36.0
         version: 9.36.0
+      '@eslint/json':
+        specifier: jsr:^0.13.2
+        version: '@jsr/eslint__json@0.13.2'
       '@nx/devkit':
         specifier: 20.8.1
         version: 20.8.1(nx@20.8.1(@swc-node/register@1.11.1(@swc/core@1.13.5(@swc/helpers@0.5.17))(@swc/types@0.1.25)(typescript@5.9.2))(@swc/core@1.13.5(@swc/helpers@0.5.17)))
@@ -88,6 +91,9 @@ importers:
       '@playwright/test':
         specifier: ^1.57.0
         version: 1.57.0
+      '@prefer-jsr/eslint-plugin-prefer-jsr':
+        specifier: jsr:^0.3.7
+        version: '@jsr/prefer-jsr__eslint-plugin-prefer-jsr@0.3.8'
       '@swc-node/register':
         specifier: 1.11.1
         version: 1.11.1(@swc/core@1.13.5(@swc/helpers@0.5.17))(@swc/types@0.1.25)(typescript@5.9.2)
@@ -219,6 +225,12 @@ importers:
         version: 3.2.4(@types/debug@4.1.12)(@types/node@22.19.3)(@vitest/ui@3.2.4)(jiti@2.4.2)(jsdom@26.1.0)(terser@5.44.0)(yaml@2.8.2)
 
   apps/docs: {}
+
+  packages/tools/graph-to-mermaid:
+    dependencies:
+      '@bomb.sh/args':
+        specifier: ^0.3.1
+        version: 0.3.1
 
 packages:
 
@@ -1005,6 +1017,9 @@ packages:
   '@bcoe/v8-coverage@1.0.2':
     resolution: {integrity: sha512-6zABk/ECA/QYSCQ1NGiVwwbQerUCZ+TQbp64Q3AgmfNvurHH0j8TtXa1qbShXA6qqkpAj4V5W8pP6mLe1mcMqA==}
     engines: {node: '>=18'}
+
+  '@bomb.sh/args@0.3.1':
+    resolution: {integrity: sha512-CwxKrfgcorUPP6KfYD59aRdBYWBTsfsxT+GmoLVnKo5Tmyoqbpo0UNcjngRMyU+6tiPbd18RuIYxhgAn44wU/Q==}
 
   '@borewit/text-codec@0.1.1':
     resolution: {integrity: sha512-5L/uBxmjaCIX5h8Z+uu+kA9BQLkc/Wl06UGR5ajNRxu+/XjonB5i8JpgFMrPj3LXTCPA0pv8yxUvbUi+QthGGA==}
@@ -1944,6 +1959,10 @@ packages:
     resolution: {integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==}
     engines: {node: '>=12.22'}
 
+  '@humanwhocodes/momoa@3.3.10':
+    resolution: {integrity: sha512-KWiFQpSAqEIyrTXko3hFNLeQvSK8zXlJQzhhxsyVn58WFRYXST99b3Nqnu+ttOtjds2Pl2grUHGpe2NzhPynuQ==}
+    engines: {node: '>=18'}
+
   '@humanwhocodes/retry@0.4.3':
     resolution: {integrity: sha512-bV0Tgo9K4hfPCek+aMAn81RppFKv2ySDQeMoSZuvTASywNTnVJCArCZE2FWqpvIatKu7VMRLWlR1EazvVhDyhQ==}
     engines: {node: '>=18.18'}
@@ -2178,6 +2197,15 @@ packages:
     engines: {node: '>=10.0'}
     peerDependencies:
       tslib: '2'
+
+  '@jsr/eslint__json@0.13.2':
+    resolution: {integrity: sha512-STMFM/yASGqRx9uhnwv4uppfvMidyR4nCZCdRjLBys/uLl3AwJ03BXr5rl2UbN9hDSNusL3RKBfNp6TBHEAALw==, tarball: https://npm.jsr.io/~/11/@jsr/eslint__json/0.13.2.tgz}
+
+  '@jsr/prefer-jsr__eslint-plugin-prefer-jsr@0.3.8':
+    resolution: {integrity: sha512-IBshB42W9D7yiH8775xEKeiLtWcD/0Rcqv8avkNhe4pwCitiYFIauG8x9JaPpP8A3gaMOikudYLVNAFod8f8gg==, tarball: https://npm.jsr.io/~/11/@jsr/prefer-jsr__eslint-plugin-prefer-jsr/0.3.8.tgz}
+
+  '@jsr/prefer-jsr__npm2jsr@0.9.0':
+    resolution: {integrity: sha512-pZyft+BRa02KlKSr1paZGgNBoi+2G069iJ1GXZveg1u/CIT5R0yL5sr8WwMKCrhe4B9Uxj16a/z/Mp8BrAj5Cg==, tarball: https://npm.jsr.io/~/11/@jsr/prefer-jsr__npm2jsr/0.9.0.tgz}
 
   '@leichtgewicht/ip-codec@2.0.5':
     resolution: {integrity: sha512-Vo+PSpZG2/fmgmiNzYK9qWRh8h/CHrwD0mo1h1DzL4yzHNSfWYujGTYsWGreD000gcgmZ7K4Ys6Tx9TxtsKdDw==}
@@ -11656,6 +11684,8 @@ snapshots:
 
   '@bcoe/v8-coverage@1.0.2': {}
 
+  '@bomb.sh/args@0.3.1': {}
+
   '@borewit/text-codec@0.1.1': {}
 
   '@colors/colors@1.5.0':
@@ -13123,6 +13153,8 @@ snapshots:
 
   '@humanwhocodes/module-importer@1.0.1': {}
 
+  '@humanwhocodes/momoa@3.3.10': {}
+
   '@humanwhocodes/retry@0.4.3': {}
 
   '@isaacs/cliui@8.0.2':
@@ -13563,6 +13595,21 @@ snapshots:
       '@jsonjoy.com/buffers': 1.2.1(tslib@2.8.1)
       '@jsonjoy.com/codegen': 1.0.0(tslib@2.8.1)
       tslib: 2.8.1
+
+  '@jsr/eslint__json@0.13.2':
+    dependencies:
+      '@eslint/core': 0.15.2
+      '@eslint/plugin-kit': 0.3.5
+      '@humanwhocodes/momoa': 3.3.10
+      natural-compare: 1.4.0
+
+  '@jsr/prefer-jsr__eslint-plugin-prefer-jsr@0.3.8':
+    dependencies:
+      '@humanwhocodes/momoa': 3.3.10
+      '@jsr/prefer-jsr__npm2jsr': 0.9.0
+      jsonc-eslint-parser: 2.4.2
+
+  '@jsr/prefer-jsr__npm2jsr@0.9.0': {}
 
   '@leichtgewicht/ip-codec@2.0.5': {}
 

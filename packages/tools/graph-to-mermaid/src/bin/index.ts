@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import { parse } from "@bomb.sh/args";
 import { readFileSync } from "node:fs";
 import {
   graphToMermaid,
@@ -36,43 +37,26 @@ function parseArgs(argv: string[]): {
   help: boolean;
   block: boolean;
 } {
-  const args = argv.slice(2);
-  let file: string | undefined;
-  let help = false;
-  let block = false;
-  const options: GraphToMermaidOptions = {};
+  const args = parse(argv.slice(2), {
+    boolean: ["help", "block"],
+    string: ["direction"],
+    alias: { h: "help", d: "direction" },
+  });
 
-  for (let i = 0; i < args.length; i++) {
-    const arg = args[i];
-
-    if (arg === "--help" || arg === "-h") {
-      help = true;
-    } else if (arg === "--block") {
-      block = true;
-    } else if (arg === "--direction" || arg === "-d") {
-      const direction = args[++i] as GraphToMermaidOptions["direction"];
-      if (!["TD", "LR", "BT", "RL"].includes(direction ?? "")) {
-        console.error(
-          `Error: Invalid direction "${direction}". Must be one of: TD, LR, BT, RL`,
-        );
-        process.exit(1);
-      }
-      options.direction = direction;
-    } else if (arg?.startsWith("--direction=")) {
-      const direction = arg.split("=")[1] as GraphToMermaidOptions["direction"];
-      if (!["TD", "LR", "BT", "RL"].includes(direction ?? "")) {
-        console.error(
-          `Error: Invalid direction "${direction}". Must be one of: TD, LR, BT, RL`,
-        );
-        process.exit(1);
-      }
-      options.direction = direction;
-    } else if (!arg?.startsWith("-")) {
-      file = arg;
-    }
+  const direction = args["direction"];
+  if (direction && !["TD", "LR", "BT", "RL"].includes(direction)) {
+    console.error(
+      `Error: Invalid direction "${direction}". Must be one of: TD, LR, BT, RL`,
+    );
+    process.exit(1);
   }
 
-  return { file, options, help, block };
+  return {
+    file: args._[0] != null ? String(args._[0]) : undefined,
+    options: direction ? { direction: direction as GraphToMermaidOptions["direction"] } : {},
+    help: args["help"] ?? false,
+    block: args["block"] ?? false,
+  };
 }
 
 async function readStdin(): Promise<string> {
