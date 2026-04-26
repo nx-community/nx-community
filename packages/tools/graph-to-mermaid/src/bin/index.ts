@@ -1,15 +1,15 @@
 #!/usr/bin/env node
 
-import { readFileSync } from 'node:fs';
+import { readFileSync } from "node:fs";
 import {
   graphToMermaid,
   type NxGraphJson,
   type GraphToMermaidOptions,
-} from '../index';
+} from "../index";
 
 function printUsage(): void {
   console.log(`
-Usage: graph-to-mermaid [options] [file]
+Usage: nx-graph-to-mermaid [options] [file]
 
 Converts an Nx graph JSON output to a Mermaid markdown diagram.
 
@@ -19,12 +19,14 @@ Arguments:
 Options:
   --direction   Graph direction: TD (top-down), LR (left-right),
                 BT (bottom-top), RL (right-left) [default: TD]
+  --block       Wrap output in a Mermaid fenced code block
   --help        Show this help message
 
 Examples:
-  nx graph --file=graph.json && graph-to-mermaid graph.json
-  nx graph --file=graph.json && graph-to-mermaid --direction=LR graph.json
-  nx graph --file=- | graph-to-mermaid
+  nx graph --file=graph.json && nx-graph-to-mermaid graph.json
+  nx graph --file=graph.json && nx-graph-to-mermaid --direction=LR graph.json
+  nx graph --file=graph.json && nx-graph-to-mermaid --block graph.json
+  nx graph --file=- | nx-graph-to-mermaid
 `);
 }
 
@@ -32,56 +34,60 @@ function parseArgs(argv: string[]): {
   file?: string;
   options: GraphToMermaidOptions;
   help: boolean;
+  block: boolean;
 } {
   const args = argv.slice(2);
   let file: string | undefined;
   let help = false;
+  let block = false;
   const options: GraphToMermaidOptions = {};
 
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
 
-    if (arg === '--help' || arg === '-h') {
+    if (arg === "--help" || arg === "-h") {
       help = true;
-    } else if (arg === '--direction' || arg === '-d') {
-      const direction = args[++i] as GraphToMermaidOptions['direction'];
-      if (!['TD', 'LR', 'BT', 'RL'].includes(direction ?? '')) {
+    } else if (arg === "--block") {
+      block = true;
+    } else if (arg === "--direction" || arg === "-d") {
+      const direction = args[++i] as GraphToMermaidOptions["direction"];
+      if (!["TD", "LR", "BT", "RL"].includes(direction ?? "")) {
         console.error(
           `Error: Invalid direction "${direction}". Must be one of: TD, LR, BT, RL`,
         );
         process.exit(1);
       }
       options.direction = direction;
-    } else if (arg?.startsWith('--direction=')) {
-      const direction = arg.split('=')[1] as GraphToMermaidOptions['direction'];
-      if (!['TD', 'LR', 'BT', 'RL'].includes(direction ?? '')) {
+    } else if (arg?.startsWith("--direction=")) {
+      const direction = arg.split("=")[1] as GraphToMermaidOptions["direction"];
+      if (!["TD", "LR", "BT", "RL"].includes(direction ?? "")) {
         console.error(
           `Error: Invalid direction "${direction}". Must be one of: TD, LR, BT, RL`,
         );
         process.exit(1);
       }
       options.direction = direction;
-    } else if (!arg?.startsWith('-')) {
+    } else if (!arg?.startsWith("-")) {
       file = arg;
     }
   }
 
-  return { file, options, help };
+  return { file, options, help, block };
 }
 
 async function readStdin(): Promise<string> {
   return new Promise((resolve, reject) => {
     const chunks: Buffer[] = [];
-    process.stdin.on('data', (chunk: Buffer) => chunks.push(chunk));
-    process.stdin.on('end', () =>
-      resolve(Buffer.concat(chunks).toString('utf-8')),
+    process.stdin.on("data", (chunk: Buffer) => chunks.push(chunk));
+    process.stdin.on("end", () =>
+      resolve(Buffer.concat(chunks).toString("utf-8")),
     );
-    process.stdin.on('error', reject);
+    process.stdin.on("error", reject);
   });
 }
 
 async function main(): Promise<void> {
-  const { file, options, help } = parseArgs(process.argv);
+  const { file, options, help, block } = parseArgs(process.argv);
 
   if (help) {
     printUsage();
@@ -91,8 +97,8 @@ async function main(): Promise<void> {
   let rawJson: string;
 
   try {
-    if (file && file !== '-') {
-      rawJson = readFileSync(file, 'utf-8');
+    if (file && file !== "-") {
+      rawJson = readFileSync(file, "utf-8");
     } else {
       rawJson = await readStdin();
     }
@@ -120,7 +126,14 @@ async function main(): Promise<void> {
   }
 
   const mermaid = graphToMermaid(graphJson, options);
-  console.log(mermaid);
+
+  if (block) {
+    console.log("```mermaid");
+    console.log(mermaid);
+    console.log("```");
+  } else {
+    console.log(mermaid);
+  }
 }
 
 main().catch((error: unknown) => {

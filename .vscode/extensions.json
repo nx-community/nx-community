@@ -5,7 +5,6 @@
     "dbaeumer.vscode-eslint",
     "eamodio.gitlens",
     "streetsidesoftware.code-spell-checker",
-    "prettier.prettier-vscode",
     "github.vscode-github-actions",
     "ms-playwright.playwright",
     "unifiedjs.vscode-mdx",
