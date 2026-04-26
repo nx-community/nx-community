@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.28.4",
+    "@bomb.sh/args": "^0.3.1",
     "@docusaurus/module-type-aliases": "3.9.2",
     "@docusaurus/tsconfig": "3.9.2",
     "@eslint/eslintrc": "^3.3.3",

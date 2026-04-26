@@ -29,6 +29,6 @@ jobs:
         run: pnpm install --ignore-scripts --frozen-lockfile
 
       - name: Build
-        run: pnpm exec nx build plugins-spellcheck
+        run: pnpm exec nx run-many -t build -p plugins-spellcheck,nx-graph-to-mermaid
 
-      - run: pnpm dlx pkg-pr-new publish './dist/packages/plugins/spellcheck'
+      - run: pnpm dlx pkg-pr-new publish './dist/packages/plugins/spellcheck' './dist/packages/tools/graph-to-mermaid'

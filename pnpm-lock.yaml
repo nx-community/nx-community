@@ -40,6 +40,9 @@ importers:
       '@babel/core':
         specifier: 7.28.4
         version: 7.28.4
+      '@bomb.sh/args':
+        specifier: ^0.3.1
+        version: 0.3.1
       '@docusaurus/module-type-aliases':
         specifier: 3.9.2
         version: 3.9.2(@swc/core@1.13.5(@swc/helpers@0.5.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -225,12 +228,6 @@ importers:
         version: 3.2.4(@types/debug@4.1.12)(@types/node@22.19.3)(@vitest/ui@3.2.4)(jiti@2.4.2)(jsdom@26.1.0)(terser@5.44.0)(yaml@2.8.2)
 
   apps/docs: {}
-
-  packages/tools/graph-to-mermaid:
-    dependencies:
-      '@bomb.sh/args':
-        specifier: ^0.3.1
-        version: 0.3.1
 
 packages:
 
@@ -6084,7 +6081,7 @@ packages:
 
   glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
-    deprecated: Glob versions prior to v9 are no longer supported
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
   global-directory@4.0.1:
     resolution: {integrity: sha512-wHTUcDUoZ1H5/0iVqEudYW4/kAlN5cZ3j/bXn0Dpbizl9iaUVeWSHqiOjsgk6OW2bkLclbBjzewBz6weQ1zA2Q==}
