@@ -17,6 +17,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          fetch-depth: 0
 
       - uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4
 
@@ -28,7 +30,35 @@ jobs:
       - name: Install dependencies
         run: pnpm install --ignore-scripts --frozen-lockfile
 
-      - name: Build
-        run: pnpm exec nx run-many -t build -p plugins-spellcheck,nx-graph-to-mermaid
+      - name: Resolve affected publishable projects
+        id: affected
+        env:
+          NX_BASE: ${{ github.event_name == 'pull_request' && format('origin/{0}', github.base_ref) || github.event.before }}
+          NX_HEAD: ${{ github.event_name == 'pull_request' && 'HEAD' || github.event.after }}
+        run: |
+          AFFECTED=$(pnpm exec nx show projects --affected)
+          echo "Affected projects: $AFFECTED"
 
-      - run: pnpm dlx pkg-pr-new publish './dist/packages/plugins/spellcheck' './dist/packages/tools/graph-to-mermaid'
+          BUILD_PROJECTS=""
+          DIST_PATHS=""
+
+          if echo "$AFFECTED" | grep -qx "plugins-spellcheck"; then
+            BUILD_PROJECTS="${BUILD_PROJECTS:+$BUILD_PROJECTS,}plugins-spellcheck"
+            DIST_PATHS="$DIST_PATHS ./dist/packages/plugins/spellcheck"
+          fi
+          if echo "$AFFECTED" | grep -qx "nx-graph-to-mermaid"; then
+            BUILD_PROJECTS="${BUILD_PROJECTS:+$BUILD_PROJECTS,}nx-graph-to-mermaid"
+            DIST_PATHS="$DIST_PATHS ./dist/packages/tools/graph-to-mermaid"
+          fi
+
+          DIST_PATHS="${DIST_PATHS# }"
+          echo "build_projects=$BUILD_PROJECTS" >> $GITHUB_OUTPUT
+          echo "dist_paths=$DIST_PATHS" >> $GITHUB_OUTPUT
+          echo "has_affected=$([ -n "$BUILD_PROJECTS" ] && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
+
+      - name: Build
+        if: steps.affected.outputs.has_affected == 'true'
+        run: pnpm exec nx run-many -t build -p ${{ steps.affected.outputs.build_projects }}
+
+      - if: steps.affected.outputs.has_affected == 'true'
+        run: pnpm dlx pkg-pr-new publish ${{ steps.affected.outputs.dist_paths }}
