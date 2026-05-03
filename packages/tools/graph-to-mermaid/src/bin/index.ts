@@ -31,34 +31,6 @@ Examples:
 `);
 }
 
-function parseArgs(argv: string[]): {
-  file?: string;
-  options: GraphToMermaidOptions;
-  help: boolean;
-  block: boolean;
-} {
-  const args = parse(argv.slice(2), {
-    boolean: ["help", "block"],
-    string: ["direction"],
-    alias: { h: "help", d: "direction" },
-  });
-
-  const direction = args["direction"];
-  if (direction && !["TD", "LR", "BT", "RL"].includes(direction)) {
-    console.error(
-      `Error: Invalid direction "${direction}". Must be one of: TD, LR, BT, RL`,
-    );
-    process.exit(1);
-  }
-
-  return {
-    file: args._[0] != null ? String(args._[0]) : undefined,
-    options: direction ? { direction: direction as GraphToMermaidOptions["direction"] } : {},
-    help: args["help"] ?? false,
-    block: args["block"] ?? false,
-  };
-}
-
 async function readStdin(): Promise<string> {
   return new Promise((resolve, reject) => {
     const chunks: Buffer[] = [];
@@ -71,12 +43,29 @@ async function readStdin(): Promise<string> {
 }
 
 async function main(): Promise<void> {
-  const { file, options, help, block } = parseArgs(process.argv);
+  const args = parse(process.argv.slice(2), {
+    boolean: ["help", "block"],
+    string: ["direction"],
+    alias: { h: "help", d: "direction" },
+  });
 
-  if (help) {
+  if (args.help) {
     printUsage();
     process.exit(0);
   }
+
+  const direction = args.direction;
+  if (direction && !["TD", "LR", "BT", "RL"].includes(direction)) {
+    console.error(
+      `Error: Invalid direction "${direction}". Must be one of: TD, LR, BT, RL`,
+    );
+    process.exit(1);
+  }
+
+  const file = args._[0] != null ? String(args._[0]) : undefined;
+  const options: GraphToMermaidOptions = direction
+    ? { direction: direction as GraphToMermaidOptions["direction"] }
+    : {};
 
   let rawJson: string;
 
@@ -111,7 +100,7 @@ async function main(): Promise<void> {
 
   const mermaid = graphToMermaid(graphJson, options);
 
-  if (block) {
+  if (args.block) {
     console.log("```mermaid");
     console.log(mermaid);
     console.log("```");
