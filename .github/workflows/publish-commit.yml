@@ -8,14 +8,12 @@ on:
     tags:
       - "!**"
 permissions:
+  actions: read
   contents: read
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      NX_BASE: ${{ github.event_name == 'pull_request' && format('origin/{0}', github.base_ref) || github.event.before }}
-      NX_HEAD: ${{ github.event_name == 'pull_request' && 'HEAD' || github.event.after }}
 
     steps:
       - name: Checkout code
@@ -33,21 +31,24 @@ jobs:
       - name: Install dependencies
         run: pnpm install --ignore-scripts --frozen-lockfile
 
+      - uses: nrwl/nx-set-shas@826660b82addbef3abff5fa871492ebad618c9e1 # v4
+
       - name: Build
         run: pnpm exec nx affected -t=build
 
       - name: Resolve affected publish paths
         id: publish
         run: |
+          PUBLISHABLE=("plugins-spellcheck" "nx-graph-to-mermaid")
           AFFECTED=$(pnpm exec nx show projects --affected)
           DIST_PATHS=""
 
-          if echo "$AFFECTED" | grep -qx "plugins-spellcheck"; then
-            DIST_PATHS="$DIST_PATHS ./dist/packages/plugins/spellcheck"
-          fi
-          if echo "$AFFECTED" | grep -qx "nx-graph-to-mermaid"; then
-            DIST_PATHS="$DIST_PATHS ./dist/packages/tools/graph-to-mermaid"
-          fi
+          for project in "${PUBLISHABLE[@]}"; do
+            if echo "$AFFECTED" | grep -qx "$project"; then
+              ROOT=$(pnpm exec nx show project "$project" --json | jq -r '.root')
+              DIST_PATHS="$DIST_PATHS ./dist/$ROOT"
+            fi
+          done
 
           DIST_PATHS="${DIST_PATHS# }"
           echo "dist_paths=$DIST_PATHS" >> $GITHUB_OUTPUT
