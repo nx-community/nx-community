@@ -33,7 +33,7 @@ describe("configure-spellcheck generator", () => {
   it("should configure project config to extend root config", async () => {
     await configureSpellcheckGenerator(tree, options);
     const configContent = JSON.parse(
-      tree.read("apps/test/.cspell.json", "utf-8")
+      tree.read("apps/test/.cspell.json", "utf-8"),
     );
     expect(configContent.import).toContain("../.cspell.json");
   });
@@ -45,7 +45,7 @@ describe("configure-spellcheck generator", () => {
 
     expect(project.targets.spellcheck).toBeDefined();
     expect(project.targets.spellcheck.executor).toBe(
-      "@nx-community/nx-spellcheck:spellcheck"
+      "@nx-community/nx-spellcheck:spellcheck",
     );
     expect(project.targets.spellcheck.options).toEqual({});
   });

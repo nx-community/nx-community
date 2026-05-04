@@ -1,6 +1,6 @@
 export interface NxProjectNode {
   name: string;
-  type: 'app' | 'lib' | 'e2e' | string;
+  type: "app" | "lib" | "e2e" | string;
   data: {
     root: string;
     tags?: string[];
@@ -11,7 +11,7 @@ export interface NxProjectNode {
 export interface NxDependency {
   source: string;
   target: string;
-  type: 'static' | 'implicit' | string;
+  type: "static" | "implicit" | string;
 }
 
 export interface NxGraph {
@@ -24,7 +24,7 @@ export interface NxGraphJson {
 }
 
 export interface GraphToMermaidOptions {
-  direction?: 'TD' | 'LR' | 'BT' | 'RL';
+  direction?: "TD" | "LR" | "BT" | "RL";
 }
 
 /**
@@ -38,7 +38,7 @@ export function graphToMermaid(
   graphJson: NxGraphJson,
   options: GraphToMermaidOptions = {},
 ): string {
-  const { direction = 'TD' } = options;
+  const { direction = "TD" } = options;
   const { nodes, dependencies } = graphJson.graph;
 
   const lines: string[] = [`graph ${direction}`];
@@ -66,12 +66,12 @@ export function graphToMermaid(
     }
   }
 
-  return lines.join('\n');
+  return lines.join("\n");
 }
 
 function sanitizeId(id: string): string {
   // Replace characters that are not valid in Mermaid node IDs
-  return id.replace(/[^a-zA-Z0-9_-]/g, '_');
+  return id.replace(/[^a-zA-Z0-9_-]/g, "_");
 }
 
 interface NodeShape {
@@ -81,12 +81,12 @@ interface NodeShape {
 
 function getNodeShape(type: string): NodeShape {
   switch (type) {
-    case 'app':
-      return { open: '([', close: '])' };
-    case 'e2e':
-      return { open: '{{', close: '}}' };
-    case 'lib':
+    case "app":
+      return { open: "([", close: "])" };
+    case "e2e":
+      return { open: "{{", close: "}}" };
+    case "lib":
     default:
-      return { open: '[', close: ']' };
+      return { open: "[", close: "]" };
   }
 }

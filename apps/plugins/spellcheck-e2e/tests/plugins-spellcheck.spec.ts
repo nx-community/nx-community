@@ -16,7 +16,7 @@ describe("plugins-spellcheck e2e", () => {
   beforeAll(() => {
     ensureNxProject(
       "@nx-community/nx-spellcheck",
-      "dist/libs/plugins/spellcheck"
+      "dist/libs/plugins/spellcheck",
     );
   });
 
@@ -32,7 +32,7 @@ describe("plugins-spellcheck e2e", () => {
     const name = "proj";
     const generator = "PLACEHOLDER";
     await runNxCommandAsync(
-      `generate @nx-community/nx-spellcheck:${generator} --name ${name}`
+      `generate @nx-community/nx-spellcheck:${generator} --name ${name}`,
     );
     expect(() => runNxCommand("build ${proj}")).not.toThrow();
     expect(() => checkFilesExist(`dist/${name}/index.js`)).not.toThrow();

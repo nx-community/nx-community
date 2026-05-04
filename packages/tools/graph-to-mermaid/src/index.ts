@@ -5,4 +5,4 @@ export {
   type NxProjectNode,
   type NxDependency,
   type GraphToMermaidOptions,
-} from './lib/graph-to-mermaid';
+} from "./lib/graph-to-mermaid";
