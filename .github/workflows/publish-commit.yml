@@ -39,18 +39,16 @@ jobs:
       - name: Resolve affected publish paths
         id: publish
         run: |
-          PUBLISHABLE=("plugins-spellcheck" "nx-graph-to-mermaid")
-          AFFECTED=$(pnpm exec nx show projects --affected)
-          DIST_PATHS=""
-
-          for project in "${PUBLISHABLE[@]}"; do
-            if echo "$AFFECTED" | grep -qx "$project"; then
-              ROOT=$(pnpm exec nx show project "$project" --json | jq -r '.root')
-              DIST_PATHS="$DIST_PATHS ./dist/$ROOT"
-            fi
-          done
-
-          DIST_PATHS="${DIST_PATHS# }"
+          DIST_PATHS=$(
+            pnpm exec nx show projects --affected |
+            while IFS= read -r project; do
+              root=$(pnpm exec nx show project "$project" --json | jq -r '.root')
+              if [[ "$root" == packages/* ]]; then
+                printf "./dist/%s " "$root"
+              fi
+            done
+          )
+          DIST_PATHS="${DIST_PATHS% }"
           echo "dist_paths=$DIST_PATHS" >> $GITHUB_OUTPUT
           echo "has_affected=$([ -n "$DIST_PATHS" ] && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
 
