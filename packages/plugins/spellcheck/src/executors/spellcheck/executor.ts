@@ -5,7 +5,7 @@ import { ExecutorContext } from "@nx/devkit";
 
 export default async function runExecutor(
   options: SpellcheckExecutorSchema,
-  context: ExecutorContext & { projectName: string }
+  context: ExecutorContext & { projectName: string },
 ) {
   const cwd = getCwdForCspell(context);
   const args = argsFromOptions(options);

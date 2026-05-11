@@ -1,0 +1,14 @@
+{
+  "name": "nx-graph-to-mermaid",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/tools/graph-to-mermaid/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "options": {
+        "assets": ["packages/tools/graph-to-mermaid/*.md"]
+      }
+    }
+  }
+}

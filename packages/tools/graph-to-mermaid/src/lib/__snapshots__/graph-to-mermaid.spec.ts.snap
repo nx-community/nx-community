@@ -1,0 +1,39 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`graphToMermaid > should convert a graph with e2e projects to Mermaid markdown snapshot 1`] = `
+"graph TD
+  my-app(["my-app"])
+  my-app-e2e{{"my-app-e2e"}}
+  shared-lib["shared-lib"]
+  my-app --> shared-lib
+  my-app-e2e --> my-app"
+`;
+
+exports[`graphToMermaid > should convert a simple graph to Mermaid markdown snapshot 1`] = `
+"graph TD
+  app-a(["app-a"])
+  lib-b["lib-b"]
+  lib-c["lib-c"]
+  app-a --> lib-b
+  app-a --> lib-c
+  lib-b --> lib-c"
+`;
+
+exports[`graphToMermaid > should convert an empty graph to Mermaid markdown snapshot 1`] = `"graph TD"`;
+
+exports[`graphToMermaid > should deduplicate edges with the same source and target snapshot 1`] = `
+"graph TD
+  project-a["project-a"]
+  project-b["project-b"]
+  project-a --> project-b"
+`;
+
+exports[`graphToMermaid > should support left-to-right direction 1`] = `
+"graph LR
+  app-a(["app-a"])
+  lib-b["lib-b"]
+  lib-c["lib-c"]
+  app-a --> lib-b
+  app-a --> lib-c
+  lib-b --> lib-c"
+`;

@@ -32,13 +32,13 @@ function ensureRootCSpellConfig(tree: Tree) {
 function createProjectConfig(
   tree: Tree,
   projectName: string,
-  projectRoot: string
+  projectRoot: string,
 ) {
   const projectConfigPath = joinPathFragments(projectRoot, ".cspell.json");
   const dictionaryPath = joinPathFragments(projectRoot, ".cspell");
   const dictionaryFile = joinPathFragments(
     dictionaryPath,
-    `${projectName}-dictionary.txt`
+    `${projectName}-dictionary.txt`,
   );
 
   // Create .cspell directory
@@ -63,7 +63,7 @@ function createProjectConfig(
 
 export async function configureSpellcheckGenerator(
   tree: Tree,
-  options: ConfigureSpellcheckGeneratorSchema
+  options: ConfigureSpellcheckGeneratorSchema,
 ) {
   const projects = getProjects(tree);
   const project = projects.get(options.project);

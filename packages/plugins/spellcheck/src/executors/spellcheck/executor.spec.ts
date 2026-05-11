@@ -30,7 +30,7 @@ describe("Spellcheck Executor", () => {
 
     const output = await executor(options, mockContext);
     expectCommandToHaveBeenCalled(
-      'cspell lint "libs/testProject/**" -c cspell.config.js --color'
+      'cspell lint "libs/testProject/**" -c cspell.config.js --color',
     );
     expect(output.success).toBe(true);
   });
@@ -53,7 +53,7 @@ describe("Spellcheck Executor", () => {
 
     const output = await executor(options, mockContext);
     expectCommandToHaveBeenCalled(
-      'cspell lint "libs/testProject/**" -c cspell.config.js'
+      'cspell lint "libs/testProject/**" -c cspell.config.js',
     );
     expect(output.success).toBe(true);
   });

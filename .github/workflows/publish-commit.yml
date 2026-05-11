@@ -8,6 +8,7 @@ on:
     tags:
       - "!**"
 permissions:
+  actions: read
   contents: read
 
 jobs:
@@ -17,6 +18,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          fetch-depth: 0
 
       - uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4
 
@@ -28,7 +31,22 @@ jobs:
       - name: Install dependencies
         run: pnpm install --ignore-scripts --frozen-lockfile
 
-      - name: Build
-        run: pnpm exec nx build plugins-spellcheck
+      - uses: nrwl/nx-set-shas@826660b82addbef3abff5fa871492ebad618c9e1 # v4
 
-      - run: pnpm dlx pkg-pr-new publish './dist/packages/plugins/spellcheck'
+      - name: Build
+        run: pnpm exec nx affected -t=build
+
+      - name: Resolve affected publish paths
+        id: publish
+        run: |
+          pnpm exec nx graph --affected --file="$RUNNER_TEMP/affected-graph.json"
+          DIST_PATHS=$(jq -r '
+            .graph.nodes | to_entries[] |
+            select(.value.data.root | startswith("packages/")) |
+            "./dist/" + .value.data.root
+          ' "$RUNNER_TEMP/affected-graph.json" | tr '\n' ' ' | sed 's/ $//')
+          echo "dist_paths=$DIST_PATHS" >> $GITHUB_OUTPUT
+          echo "has_affected=$([ -n "$DIST_PATHS" ] && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
+
+      - if: steps.publish.outputs.has_affected == 'true'
+        run: pnpm dlx pkg-pr-new publish ${{ steps.publish.outputs.dist_paths }}

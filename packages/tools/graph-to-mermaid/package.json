@@ -1,0 +1,15 @@
+{
+  "name": "@nx-community/nx-graph-to-mermaid",
+  "version": "0.0.1",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "types": "./src/index.d.ts",
+  "bin": {
+    "nx-graph-to-mermaid": "./src/bin/index.js"
+  },
+  "dependencies": {
+    "@bomb.sh/args": "^0.3.1"
+  }
+}
