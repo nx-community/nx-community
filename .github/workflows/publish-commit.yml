@@ -39,16 +39,12 @@ jobs:
       - name: Resolve affected publish paths
         id: publish
         run: |
-          DIST_PATHS=$(
-            pnpm exec nx show projects --affected |
-            while IFS= read -r project; do
-              root=$(pnpm exec nx show project "$project" --json | jq -r '.root')
-              if [[ "$root" == packages/* ]]; then
-                printf "./dist/%s " "$root"
-              fi
-            done
-          )
-          DIST_PATHS="${DIST_PATHS% }"
+          pnpm exec nx graph --affected --file=/tmp/affected-graph.json
+          DIST_PATHS=$(jq -r '
+            .graph.nodes | to_entries[] |
+            select(.value.data.root | startswith("packages/")) |
+            "./dist/" + .value.data.root
+          ' /tmp/affected-graph.json | tr '\n' ' ' | sed 's/ $//')
           echo "dist_paths=$DIST_PATHS" >> $GITHUB_OUTPUT
           echo "has_affected=$([ -n "$DIST_PATHS" ] && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
 
