@@ -9,3 +9,6 @@ packages:
 peerDependencyRules:
   allowedVersions:
     "typescript": "5.9.2"
+minimumReleaseAgeExclude:
+  # Renovate security update: @babel/core@7.29.6
+  - "@babel/core@7.29.6"
