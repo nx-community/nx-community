@@ -69,7 +69,7 @@
     "jsonc-eslint-parser": "^2.4.2",
     "knip": "^5.78.0",
     "lefthook": "^1.13.6",
-    "nx": "20.8.1",
+    "nx": "22.7.2",
     "pkg-pr-new": "^0.0.62",
     "prettier": "^3.7.4",
     "remark-frontmatter": "^5.0.0",
